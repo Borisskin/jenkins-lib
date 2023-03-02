@@ -88,7 +88,7 @@ void call() {
                                                     if (config.infoBaseFromFiles()) {
                                                         // Создание базы загрузкой из файлов
                                                         initFromFiles config
-                                                    } else {
+                                                    } else if (config.initInfoBaseOptions.initMethod != InitInfoBaseMethod.FROM_DT){
                                                         // Создание базы загрузкой конфигурации из хранилища
                                                         initFromStorage config
                                                     }

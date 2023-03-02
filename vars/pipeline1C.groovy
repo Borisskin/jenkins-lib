@@ -83,6 +83,8 @@ void call() {
                                                 createDir('build/out')
 
                                                 script {
+                                                    createInfoBase config
+
                                                     if (config.infoBaseFromFiles()) {
                                                         // Создание базы загрузкой из файлов
                                                         initFromFiles config

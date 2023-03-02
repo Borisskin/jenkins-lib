@@ -38,8 +38,8 @@
   "initInfobase": {
     "initMethod": "fromStorage",
     "runMigration": true,
-    "additionalInitializationSteps": [],
-    "vrunnerSettings": "./tools/vrunner.json"
+    "vrunnerSettings": "./tools/vrunner.json",
+    "additionalInitializationSteps": []
   },
   "bdd": {
     "vrunnerSteps": [

@@ -36,6 +36,7 @@
     "zipInfoBase": 60
   },
   "initInfobase": {
+    "preloadDTURL": "",
     "initMethod": "fromStorage",
     "runMigration": true,
     "vrunnerSettings": "./tools/vrunner.json",

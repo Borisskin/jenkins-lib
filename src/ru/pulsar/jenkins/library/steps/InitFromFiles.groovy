@@ -43,7 +43,7 @@ class InitFromFiles implements Serializable {
         }
 
         Logger.println("Выполнение загрузки конфигурации из файлов")
-        String vrunnerPath = VRunner.getVRunnerPath();
+        String vrunnerPath = VRunner.getVRunnerPath()
         String vrunnerSettings = config.initInfoBaseOptions.vrunnerSettings
         String base = config.baseName()
 

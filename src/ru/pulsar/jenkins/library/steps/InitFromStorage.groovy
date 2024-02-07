@@ -32,6 +32,7 @@ class InitFromStorage implements Serializable {
         }
 
         steps.installLocalDependencies()
+
         steps.createDir('build/out')
 
         String storageVersion = VersionParser.storage(config.getSrcDir())
@@ -63,7 +64,7 @@ class InitFromStorage implements Serializable {
             if (steps.fileExists(vrunnerSettings)) {
                 initCommand += " --settings $vrunnerSettings"
             }
-            VRunner.exec(initCommand))
+            VRunner.exec(initCommand)
         }
     }
 

@@ -57,7 +57,7 @@ class InitFromStorage implements Serializable {
             )
         ]) {
             String vrunnerPath = VRunner.getVRunnerPath()
-            String vrunnerSettings = config.initInfoBaseOptions.getVrunnerSettings()
+            String vrunnerSettings = config.initInfoBaseOptions.vrunnerSettings
             String base = config.baseName()
 
             def initCommand = "$vrunnerPath update-dev --storage $storageVersionParameter --ibconnection \"$base\""

@@ -35,17 +35,17 @@ class CreateInfoBase implements Serializable {
         String preloadDTURL = config.initInfoBaseOptions.getPreloadDTURL()
         if (!preloadDTURL.isEmpty()) {
 
-            String vrunnerSettings = config.initInfoBaseOptions.getVrunnerSettings()
+            String vrunnerSettings = config.initInfoBaseOptions.vrunnerSettings
 
             FilePath localPathToPreloadDT = FileUtils.getFilePath("$env.WORKSPACE/$PRELOAD_DT_LOCAL_PATH")
             Logger.println("Скачивание DT в $localPathToPreloadDT")
             localPathToPreloadDT.copyFrom(new URL(preloadDTURL))
 
-            String command = vrunnerPath + " init-dev --dt $localPathToPreloadDT"
+            String initCommand = "$vrunnerPath init-dev --dt $localPathToPreloadDT"
             if (steps.fileExists(vrunnerSettings)) {
-                command += " --settings $vrunnerSettings"
+                initCommand += " --settings $vrunnerSettings"
             }
-            VRunner.exec(command)
+            VRunner.exec(initCommand)
 
         }
 

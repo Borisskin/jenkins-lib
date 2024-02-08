@@ -48,7 +48,7 @@ class InitFromFiles implements Serializable {
         String base = config.baseName()
 
         def initCommand = "$vrunnerPath update-dev --src $srcDir --ibconnection \"$base\""
-        if (steps.fileExists(vrunnerSettings)) {
+        if (steps.fileExists(vrunnerSettings) && config.basePath != '') {
             initCommand += " --settings $vrunnerSettings"
         }
         VRunner.exec(initCommand)

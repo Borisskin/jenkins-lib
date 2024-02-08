@@ -35,23 +35,23 @@ class InitInfoBase implements Serializable {
             if (config.initInfoBaseOptions.runMigration) {
                 Logger.println("Запуск миграции ИБ")
 
-                String command = vrunnerPath + ' run --command "ЗапуститьОбновлениеИнформационнойБазы;ЗавершитьРаботуСистемы;" --execute '
+                String initCommand = vrunnerPath + ' run --command "ЗапуститьОбновлениеИнформационнойБазы;ЗавершитьРаботуСистемы;" --execute '
                 String executeParameter = '$runnerRoot/epf/ЗакрытьПредприятие.epf'
                 if (steps.isUnix()) {
                     executeParameter = '\\' + executeParameter
                 }
-                command += executeParameter;
+                initCommand += executeParameter;
                 String base = config.baseName()
-                command += " --ibconnection \"$base\""
+                initCommand += " --ibconnection \"$base\""
 
                 String vrunnerSettings = config.initInfoBaseOptions.vrunnerSettings
                 if (steps.fileExists(vrunnerSettings)) {
-                    command += " --settings $vrunnerSettings"
+                    initCommand += " --settings $vrunnerSettings"
                 }
 
                 // Запуск миграции
                 steps.catchError {
-                    VRunner.exec(command)
+                    VRunner.exec(initCommand)
                 }
             } else {
                 Logger.println("Шаг миграции ИБ выключен")

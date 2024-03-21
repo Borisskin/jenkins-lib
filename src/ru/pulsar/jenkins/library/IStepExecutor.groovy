@@ -1,5 +1,6 @@
 package ru.pulsar.jenkins.library
 
+import hudson.FilePath
 import jenkins.plugins.http_request.HttpMode
 import jenkins.plugins.http_request.MimeType
 import jenkins.plugins.http_request.ResponseContentSupplier
@@ -11,9 +12,9 @@ interface IStepExecutor {
 
     boolean isUnix()
     
-    int sh(String script, boolean returnStatus, String encoding)
+    def sh(String script, boolean returnStatus, boolean returnStdout, String encoding)
     
-    int bat(String script, boolean returnStatus, String encoding)
+    def bat(String script, boolean returnStatus, boolean returnStdout, String encoding)
 
     String libraryResource(String path)
 
@@ -29,9 +30,13 @@ interface IStepExecutor {
 
     void echo(message)
 
-    int cmd(String script, boolean returnStatus)
+    def cmd(String script, boolean returnStatus, boolean returnStdout)
 
-    int cmd(String script)
+    def cmd(String script, boolean returnStatus)
+
+    def cmd(String script)
+
+    def ringCommand(String script)
 
     void tool(String toolName)
 
@@ -52,6 +57,8 @@ interface IStepExecutor {
     void deleteDir()
 
     void deleteDir(String path)
+
+    void deleteDir(FilePath path)
 
     def withEnv(List<String> strings, Closure body)
 

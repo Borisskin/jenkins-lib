@@ -9,6 +9,10 @@ plugins {
     id("org.jenkins-ci.jpi") version "0.38.0" apply false
 }
 
+repositories {
+    mavenCentral()
+}
+
 tasks {
 
     register<org.jenkinsci.gradle.plugins.jpi.TestDependenciesTask>("resolveIntegrationTestDependencies") {
@@ -48,7 +52,7 @@ dependencies {
 
     testImplementation("org.slf4j", "slf4j-api", slf4jVersion)
     testImplementation("org.slf4j", "slf4j-simple", slf4jVersion)
-
+    
     // integration-tests
     integrationTestImplementation("org.spockframework", "spock-core", spockVersion)
     integrationTestImplementation("org.codehaus.groovy", "groovy-all", groovyVersion)
@@ -106,5 +110,6 @@ sharedLibrary {
         dependency("org.jenkinsci.plugins", "pipeline-model-definition", declarativePluginsVersion)
         dependency("org.jenkinsci.plugins", "pipeline-model-extensions", declarativePluginsVersion)
         dependency("io.jenkins.blueocean", "blueocean-pipeline-api-impl", "1.25.3")
+        dependency("sp.sd", "file-operations", "214.v2e7dc7f25757")
     }
 }

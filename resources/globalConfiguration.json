@@ -25,11 +25,13 @@
   "timeout": {
     "smoke": 240,
     "bdd": 120,
+    "getBinaries": 60,
     "createInfoBase": 60,
     "designerToEdtFormatTransformation": 60,
     "edtToDesignerFormatTransformation": 60,
     "edtValidate": 240,
     "initInfoBase": 60,
+    "loadExtensions": 60,
     "resultTransformation": 10,
     "sonarqube": 90,
     "syntaxCheck": 240,
@@ -40,7 +42,8 @@
     "initMethod": "fromStorage",
     "runMigration": true,
     "vrunnerSettings": "./tools/vrunner.json",
-    "additionalInitializationSteps": []
+    "additionalInitializationSteps": [],
+    "extensions": []
   },
   "bdd": {
     "vrunnerSteps": [

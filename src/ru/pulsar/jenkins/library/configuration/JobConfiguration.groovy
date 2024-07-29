@@ -58,6 +58,10 @@ class JobConfiguration implements Serializable {
     @JsonPropertyDescription("Настройки дымового тестирования")
     SmokeTestOptions smokeTestOptions;
 
+    @JsonProperty("yaxunit")
+    @JsonPropertyDescription("Настройки YAXUnit")
+    YaxunitOptions yaxunitOptions;
+
     @JsonProperty("resultsTransform")
     @JsonPropertyDescription("Настройки трансформации результатов анализа")
     ResultsTransformOptions resultsTransformOptions;
@@ -88,6 +92,7 @@ class JobConfiguration implements Serializable {
             ", sonarQubeOptions=" + sonarQubeOptions +
             ", syntaxCheckOptions=" + syntaxCheckOptions +
             ", smokeTestOptions=" + smokeTestOptions +
+            ", yaxunitOptions=" + yaxunitOptions +
             ", resultsTransformOptions=" + resultsTransformOptions +
             ", notificationOptions=" + notificationsOptions +
             ", logosConfig='" + logosConfig + '\'' +
@@ -104,8 +109,14 @@ class JobConfiguration implements Serializable {
             (initMethod == InitInfoBaseMethod.DEFAULT_BRANCH_FROM_STORAGE && branchName != defaultBranch)
     }
 
-    boolean needLoadExtensions() {
-        return initInfoBaseOptions.extensions.length != 0
+    boolean needLoadExtensions(String stageName = "") {
+        if (stageName.isEmpty()) {
+            return initInfoBaseOptions.extensions.length != 0
+        } else {
+            return initInfoBaseOptions.extensions.any { extension ->
+                extension.stages.contains(stageName)
+            }
+        }
     }
 
     String v8AgentLabel() {
